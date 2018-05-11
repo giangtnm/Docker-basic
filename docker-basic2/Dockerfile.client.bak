@@ -1,0 +1,7 @@
+FROM ubuntu
+RUN apt-get update -y && apt-get install iperf3 -y
+
+EXPOSE 5201
+ENTRYPOINT ["iperf3"]
+
+CMD ["-c", "172.30.0.10", "-u", "-p", "5201"]
