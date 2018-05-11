@@ -1,0 +1,7 @@
+FROM ubuntu
+RUN apt-get update -y && apt-get install iperf3 -y
+
+ADD entrypoint-server.sh /usr/local/bin/entrypoint-server.sh
+RUN chmod +x /usr/local/bin/entrypoint-server.sh
+EXPOSE 5201
+ENTRYPOINT ["entrypoint-server.sh"]

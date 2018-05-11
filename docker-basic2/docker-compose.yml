@@ -1,0 +1,40 @@
+version: '2'
+services:
+  node0:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    image: iperf-server
+    hostname: node0-server
+    container_name: node0-server
+    networks:
+      iot_net:
+        ipv4_address: 172.30.0.10
+  node1:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    image: iperf-client
+    hostname: node1-client
+    container_name: node1-client
+    networks:
+      iot_net:
+        ipv4_address: 172.30.0.11
+  node2:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    image: iperf-client
+    hostname: node2-client
+    container_name: node2-client
+    networks:
+      iot_net:
+        ipv4_address: 172.30.0.12
+networks:
+  iot_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.30.0.0/24
+        gateway: 172.30.0.1
