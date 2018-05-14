@@ -2,11 +2,13 @@ version: '3'
 
 services:
   app:
-   image: <dockerHubUsername/image_name>
+   image: giangtnm/lab_docker_swarm
    ports:
      - 8080:8080
    environment:
      - SERVICE_PORTS=8080
+   volumes:
+     - /etc/hostname:/etc/hostname
    deploy:
      replicas: 5
      update_config:
